@@ -1,0 +1,6 @@
+module Pods_HenriMobileInterviewProject {
+  umbrella header "Pods-HenriMobileInterviewProject-umbrella.h"
+
+  export *
+  module * { export * }
+}
