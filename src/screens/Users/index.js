@@ -44,21 +44,21 @@ export default function UsersScreen() {
 			});
 
 		//get faces
-		// axios({
-		// 	method: 'get',
-		// 	url: 'https://uifaces.co/api',
-		// 	headers: { 'X-API-KEY': '98E27201-9AED4764-9B4C5FD2-DE0FB3EB' }
-		// })
-		// 	.then(function(response) {
-		// 		faces = response.data;
-		// 	})
-		// 	.catch(function(error){
-		// 		getFacesFailed = true;
-		// 	})
-		// 	.then(function () {
-		// 		getFaces(faces, getFacesFailed);
-		// 		setIsGettingFaces(false);
-		// 	});
+		axios({
+			method: 'get',
+			url: 'https://uifaces.co/api',
+			headers: { 'X-API-KEY': '98E27201-9AED4764-9B4C5FD2-DE0FB3EB' }
+		})
+			.then(function(response) {
+				faces = response.data;
+			})
+			.catch(function(error){
+				getFacesFailed = true;
+			})
+			.then(function () {
+				getFaces(faces, getFacesFailed);
+				setIsGettingFaces(false);
+			});
 	}, []);
 	
 	return (

@@ -1,97 +1,36 @@
-# Henri Mobile Interview Project
+# Retrospective on Submitted Project
 
-Thank you for taking the time to complete this project and considering joining our team.
+Total time: 7:46
 
-The intention for this project is to get a good baseline of your React Native and JavaScript skills.
+Complete:
+	1. React Native dependancy management - updated dependancies, podfile for v63+ and removed duplicate vector icons
+	2. Redux Implementation - using a pattern I've used before
+	3. React Navigation for tab layout - single page for each tab implemented
+	4. Basic Thunk implementation - for async actions in redux, I had never used this middleware before but like it a lot (I use saga at work)
+	5. Users Tab with associated Redux - using React Native Elements List view for simplicity due to limited response size
+	6. Todos Tab using local state rather than Redux - using ListView
+	7. JSONPlaceholder API integration with axios
+	8. UIFaces API integration with axios
+	9. Initial Redux actions and API calls for Feed Tab
 
-We expect the project to take anywhere from 3-6 hours depending on experience. Feel free to dedicate what you want - but it shouldn't feel like a burden.
+Incomplete:
+	1. Feed UI/UX
+	2. Ability to Add Posts
+	3. Ability to Delete Posts
+	4. Feed Tab State Management
+	5. Better UI styling
+	6. Additional ListView optimizations
 
-Overall we will be evaluating the entire package: code quality and architecture are the most important, but UI work is also necessary. Aim to be well rounded instead of perfection in a single area. If you find yourself far exceeding the time constraints, then consider reducing the quality.
 
-The project is list heavy, so please make sure that you are up to date with optimized react native lists https://reactnative.dev/docs/optimizing-flatlist-configuration
+Remaning Work:
+	The majority of the remaining work for this project is within the Feed tab. While I was able to get the initial API calls setup with the redux action using Thunk middleware, the actual visual implementation of those calls had barely started before I ran up against time.
 
-## Summary
+	My last piece of work I could fit in was a function to create a single "combinedPost" object that could be passed into the PostCard component to be rendered on the page. I spent a good amount of time attempting to create that function with the redux actions without success, and ultimately that time ended up delaying me to the point where I ran out of time for the project. The solution to combine the data within the component before rendering the flatlist might have worked, but I am still learning the state management aspect of the React Hooks and had some issues rendering the FlatList given the combinePost function takes a second given the amount of data returned. 
 
-The project will consist of three tabs:
+	The actual process of creating a new post would have been straightforward. I would have simple added a textbox with submission button that onPress would have triggered a createpost redux action built with thunk to make the api call. From there I would have appended the post using unshift() to the posts array with the feed namespace in redux, and refreshed the list using a conditional within useEffect on the FeedScreen.
 
-1. Users - list of users with their pertinent information
-2. Feed - list of posts and comments, ability to create and delete a post
-3. Todos - list of todos, ability to mark as complete/incomplete
+	Deleting a post would require creating a delete button or "X" depending on space, then having that button trigger a similar flow to creating a post but with the delete API call and using a posts.filter function to create a new list for redux. The same useEffect trigger would have refreshed the post lists as well.
 
-We highly recommend using the most modern practices such as React Hooks/functional components.
+	As another small note, my inten was to create each post as a TouchableOpacity which, when pressed, would expand the comments associated with that post to make them visible. This would have used useState within the PostCard component to manage the visibility of the comments. Furthermore, the intention was to pass in the avatar and names from the user list as well to indicate who created each post.
 
-## Tools Used
-
-- React Native – Framework for building mobile apps: https://facebook.github.io/react-native/
-- React Navigation – Routing for React Native apps: https://reactnavigation.org/
-- Redux – Javascript state management: https://redux.js.org/
-- React Native Vector Icons - Customizable Icons: https://github.com/oblador/react-native-vector-icons
-- Axios – HTTP client: https://www.npmjs.com/package/axios
-- JSONPlaceholder - Fake Online REST API: https://jsonplaceholder.typicode.com
-- UIFaces - Avatars for design mockups: https://uifaces.co
-
-## Tab Descriptions
-
-### Users
-
-The Users tab should display a list of users along with other info such as email, phone, company, etc (use your discretion).
-
-The Users will be retrieved from JSONPlaceholder (mentioned above).
-
-JSONPlaceholder does not provide avatar images.
-
-It is recommended to show user avatars by using UIFaces (please set up an API key) and populate users from JSONPlaceholder.
-
-The users should be fetched in the component/screen itself and dispatched to Redux.
-
-The reason users should be in Redux is so they can be retrieved in other parts of the application (Feed tab).
-
-### Feed
-
-The Feed tab will be the most complex in the project.
-
-It should display a list of posts from JSONPlaceholder and the posts should also show their respective comments (separate endpoint from JSONPlaceholder).
-
-The posts should be populated with the corresponding user from the Users reducer. It would be wise to display information such as name and avatar of the user making the post.
-
-Comments do not have user info but there should be some indication as to who it was from (provided in the comment object).
-
-Posts/comments should be fetched by dispatching a redux action (the API call should be in the actions file).
-
-Posts should have the ability to be deleted by dispatching a redux action (use JSONPlaceholder DELETE endpoint).
-
-In addition, there should be a way to create a new post. The new post should have a title and body as the rest do. You must use the fake API endpoint with JSONPlaceholder to complete a POST request, although no data will actually be saved.
-
-Once the post is made, it should be visible on the client. A user should be assigned to the post.
-
-### Todos
-
-The Todos tab will be the easiest of them all.
-
-Simply use local state to fetch todos from JSONPlaceholder.
-
-Display the todos and with an indication on whether they have been completed or not.
-
-Allow for todos to be marked as complete/incomplete using React Hooks/local state.
-
-## Getting Started
-
-Clone the repo, run `npm install`, and begin scaffolding the app. If you need to set up React Native, please follow the guide here: https://facebook.github.io/react-native/docs/getting-started.html. Do NOT use "Expo CLI Quickstart" - use "React Native CLI Quickstart."
-
-You'll especially want to consider your redux, router, and screens architecture.
-
-We recommend using a bottom tab navigator from React Navigation (https://reactnavigation.org/docs/en/bottom-tab-navigator.html).
-
-Then begin building out the individual tabs as discussed above.
-
-There is an app-sample.png photo in the root of the repo. It's just meant to provide something visual - don't feel the need to follow it.
-
-## Upon Completion
-
-When completed, create a GitHub repo and send to d.shostack@henrihome.com with your name/info.
-
-## Contact
-
-We are here to answer any questions throughout the process, especially if something is not clear or doesn't make sense.
-
-You can reach us at d.shostack@henrihome.com.
+	Finally, the real casuality of running out of time was the styling of the application. Originally I intended to get all of the functionality working before returning to styling with my remaining time. Unfortunately that didn't work out and I would not describe this project as a showcase for how I would develop a production feature.
